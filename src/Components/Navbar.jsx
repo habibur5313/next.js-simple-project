@@ -1,37 +1,15 @@
-// // import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
-// // import Link from "next/link";
-// import React from "react";
+import Link from "next/link";
+import {
+  LoginLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-// const Navbar = () => {
-//   return (
-//     <div className=" navbar  px-2 md:px-6 xl:px-10  flex items-center border fixed container mx-auto text-white bg-black bg-opacity-20 z-50 rounded-xl  ">
-//    {/* <div>
-//     <h1>HEllO</h1>
-//    </div>
-//    <div>
-//     <ul>
-//       <li><Link>Home</Link></li>
-//       <li><Link></Link></li>
-//     </ul>
-//    </div>
-//    <div>
-//     <button><RegisterLink>Sign Up</RegisterLink></button>?
-//     <button><LoginLink>Sign Out</LoginLink></button>
-//    </div> */}
-//     </div>
-//   );
-// };
-// export default Navbar;
+const Navbar = async () => {
+  const { getUser } = await getKindeServerSession();
+  const user = await getUser();
 
-import Link from 'next/link';
-import { LoginLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-
-const { getUser } = getKindeServerSession();
-const user = getUser();
-
-const Navbar = () => {
   return (
     <nav className="bg-blue-500 text-white p-4">
       <div className="flex items-center justify-between px-8">
@@ -52,16 +30,19 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-4">
-          {/* {user ? ( */}
-            {/* <div className="flex items-center gap-4">
-              <Link href="/profile" className="btn bg-[#FFA500] px-4 py-2 rounded-xl">
+          {user ? (
+            <div className="flex items-center gap-4">
+              <Link
+                href="/profile"
+                className="btn bg-[#FFA500] px-4 py-2 rounded-xl"
+              >
                 Profile
               </Link>
               <LogoutLink className="btn bg-[#FFA500] px-4 py-2 rounded-xl">
                 Log out
               </LogoutLink>
-            </div> */}
-          {/* ) : ( */}
+            </div>
+          ) : (
             <div className="flex items-center gap-4">
               <LoginLink className="btn bg-[#FFA500] px-4 py-2 rounded-xl">
                 Sign in
@@ -70,7 +51,7 @@ const Navbar = () => {
                 Sign up
               </RegisterLink>
             </div>
-          {/* )} */}
+          )}
         </div>
       </div>
     </nav>
@@ -78,7 +59,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-
