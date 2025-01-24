@@ -26,13 +26,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       <div className="container mx-auto">
+       <div className="container mx-auto ">
         <Navbar></Navbar>
-       <div className="min-h-[calc(100vh-200px)] pt-20">
+       <div className="min-h-[calc(100vh-200px)] mt-5">
        {children}
        </div>
        </div>
-       <Footer></Footer>
+       {/* <Footer></Footer> */}
       </body>
     </html>
     </AuthProvider>
